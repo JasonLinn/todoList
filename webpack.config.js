@@ -44,7 +44,7 @@ module.exports = {
     },
     output: {
         //resolve 的函式是為了不管在 Windows 或是 Unix 上都可以正確解析路徑
-        path: path.resolve(__dirname, 'dist/'),
+        path: path.resolve(__dirname, 'dist/js/'),
         //這邊用[name]，產出的js才會有各個entry的
         filename: '[name].js'
     },
