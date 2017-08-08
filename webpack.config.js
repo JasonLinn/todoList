@@ -6,7 +6,12 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 //設定路徑
 var node_modules = path.resolve(__dirname, "node_modules");
 //將檔案轉成css
-const extractCss = new ExtractTextPlugin('css/[name].css');
+const extractCss = new ExtractTextPlugin({
+    filename: (getPath) => {
+        return getPath('css/[name].css').replace('css/js', 'css');
+    },
+    allChunks: true
+});
 //HtmlWebpackPlugin的插件，用來執行inline的設定
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 /*======================
@@ -19,9 +24,9 @@ const sourcePlugin = new HtmlWebpackInlineSourcePlugin();
 =======================*/
 const index = new HtmlWebpackPlugin({
     //目標檔案    
-    filename: `${__dirname}/dist/index.html`,
+    filename: `${__dirname}/index.html`,
     //模板
-    template: `${__dirname}/index.html`,
+    template: `${__dirname}/src/index.html`,
     inject: 'body',
     title: 'this is index',
     chuncks: ['index'],
@@ -33,7 +38,7 @@ const index = new HtmlWebpackPlugin({
 
 module.exports = {
     entry: {
-        index: './js/index.js',
+        index: './src/js/index.js',
         // a: './js/a.js',
         // router: './js/react-router.js',
         // //直接改變名稱到指定資料夾
@@ -42,9 +47,10 @@ module.exports = {
         // flux: './js/flux.js'
 
     },
+    watch: true,
     output: {
         //resolve 的函式是為了不管在 Windows 或是 Unix 上都可以正確解析路徑
-        path: path.resolve(__dirname, 'dist/js/'),
+        path: path.resolve(__dirname, './js'),
         //這邊用[name]，產出的js才會有各個entry的
         filename: '[name].js'
     },
@@ -135,10 +141,16 @@ module.exports = {
     // devServer 則是 webpack-dev-server 設定
     devServer: {
         //開啟的地方
-        contentBase: "./dist",
+        contentBase: "./",
         inline: true,
         port: 8009,
+        hot:true
     },
     // plugins 放置所使用的外掛
-    plugins: [extractCss, index]
+    plugins: [new ExtractTextPlugin({
+        filename: (getPath) => {
+            return getPath('css/[name].css').replace('css/js', 'css');
+        },
+        allChunks: true
+    }), index]
 }
