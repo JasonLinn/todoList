@@ -1,5 +1,6 @@
 // 這邊使用 HtmlWebpackPlugin，將 bundle 好的 <script> 插入到 body。${__dirname} 為 ES6 語法對應到 __dirname  
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const path = require('path');
 //這個 plugin 的用途就是把 text 類型的結果匯出成一個檔案
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -152,5 +153,22 @@ module.exports = {
             return getPath('css/[name].css').replace('css/js', 'css');
         },
         allChunks: true
-    }), index]
+    }), index, new BrowserSyncPlugin(
+    // BrowserSync options 
+    {
+        // browse to http://localhost:3000/ during development 
+        host: 'localhost',
+        port: 3000,
+        // proxy the Webpack Dev Server endpoint 
+        // (which should be serving on http://localhost:3100/) 
+        // through BrowserSync 
+        proxy: 'http://localhost:8009/'
+    },
+    // plugin options 
+    {
+        // prevent BrowserSync from reloading the page 
+        // and let Webpack Dev Server take care of this 
+        reload: true
+    }
+    )]
 }

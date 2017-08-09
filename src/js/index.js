@@ -1,2 +1,2 @@
 import '../sass/main.scss';
-alert(433553)
+alert('webpack tart!')
