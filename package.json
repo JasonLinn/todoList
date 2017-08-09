@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --inline --hot",
     "dev": "webpack-dev-server --devtool eval --progress --colors --content-base build",
-    "web":"webpack-dev-server --watch-poll"
+    "web": "webpack-dev-server --watch-poll"
   },
   "author": "",
   "license": "ISC",
@@ -39,6 +39,7 @@
   "dependencies": {
     "browser-sync": "^2.18.13",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "redux": "^3.7.2"
   }
 }
