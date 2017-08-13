@@ -52,6 +52,7 @@ module.exports = {
     output: {
         //resolve 的函式是為了不管在 Windows 或是 Unix 上都可以正確解析路徑
         path: path.resolve(__dirname, './js'),
+        publicPath: "/",//讓router有一個公共的路徑
         //這邊用[name]，產出的js才會有各個entry的
         filename: '[name].js'
     },
@@ -142,10 +143,12 @@ module.exports = {
     // devServer 則是 webpack-dev-server 設定
     devServer: {
         //開啟的地方
-        contentBase: "./",
+        contentBase: path.resolve(__dirname,"./"),
+        // publicPath:"http://localhost:8080/",
         inline: true,
-        port: 8009,
-        hot:true
+        port: 8080,
+        hot:true,
+        historyApiFallback: true //讓route產生作用
     },
     // plugins 放置所使用的外掛
     plugins: [new ExtractTextPlugin({
@@ -162,7 +165,7 @@ module.exports = {
         // proxy the Webpack Dev Server endpoint 
         // (which should be serving on http://localhost:3100/) 
         // through BrowserSync 
-        proxy: 'http://localhost:8009/'
+        proxy: 'http://localhost:8080/'
     },
     // plugin options 
     {
