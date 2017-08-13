@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --inline --hot",
     "dev": "webpack-dev-server --devtool eval --progress --colors --content-base build",
-    "web": "webpack-dev-server --watch-poll"
+    "web": "webpack-dev-server --watch-poll",
+    "both": "concurrently \"npm run start\" \"webpack\""
   },
   "author": "",
   "license": "ISC",
