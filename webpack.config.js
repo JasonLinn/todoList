@@ -39,7 +39,7 @@ const index = new HtmlWebpackPlugin({
 
 module.exports = {
     entry: {
-        index: './src/js/index.js',
+        index: './src/js/components/index.js',
         // a: './js/a.js',
         // router: './js/react-router.js',
         // //直接改變名稱到指定資料夾

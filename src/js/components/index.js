@@ -2,9 +2,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import InputField from './components/InputField';
-import TodoHeader from './components/TodoHeader';
-import TodoList from './components/TodoList';
+import InputField from './InputField';
+import TodoHeader from './TodoHeader';
+import TodoList from './TodoList';
 
 // const todos = [
 //     {
